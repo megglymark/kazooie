@@ -34,6 +34,7 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/user', users);
 
 // passport config
 var Account = require('./models/account');
