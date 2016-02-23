@@ -8,8 +8,8 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var routes = require('./app/routes/index');
+var users = require('./app/routes/users');
 
 var app = express();
 
@@ -37,7 +37,7 @@ app.use('/', routes);
 app.use('/user', users);
 
 // passport config
-var Account = require('./models/account');
+var Account = require('./app/models/account');
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
