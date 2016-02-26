@@ -8,7 +8,6 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-var routes = require('./app/routes/index');
 var users = require('./app/routes/users');
 
 var app = express();
@@ -32,8 +31,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
 app.use('/user', users);
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build/views', 'index.html'));
+});
 
 // passport config
 var Account = require('./app/models/account');
