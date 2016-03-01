@@ -1,4 +1,5 @@
-angular.module('app').controller('LoginCtrl',
+angular.module('app')
+  .controller('LoginController',
   ['$scope', '$location', 'AuthService',
     function ($scope, $location, AuthService) {
     
@@ -26,4 +27,47 @@ angular.module('app').controller('LoginCtrl',
 
       };
 
-    }]);
+}]);
+
+angular.module('app')
+  .controller('LogoutController',
+    ['$scope', '$location', 'AuthService',
+    function ($scope, $location, AuthService) {
+
+      $scope.logout = function () {
+
+        AuthService.logout()
+
+          .then(function () {
+            $location.path('/login');
+          });
+
+      };
+
+}]);
+
+angular.module('app')
+  .controller('RegisterController',
+    ['$scope', '$location', 'AuthService',
+      function ($scope, $location, AuthService) {
+
+        $scope.register = function () {
+
+          $scope.error = false;
+          $scope.disabled = true;
+          console.log($scope.registerForm.username);
+
+          AuthService.register($scope.registerForm.username, $scope.registerForm.password)
+            .then(function () {
+              $location.path('/login');
+              $scope.disabled = false;
+              $scope.registerForm = {};
+            })
+            .then(function () {
+              $scope.error = true;
+              $scope.errorMessage = "Something went wrong!";
+              $scope.disabled = false;
+              $scope.registerForm = {};
+            })
+        };
+}]);

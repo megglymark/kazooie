@@ -1,17 +1,19 @@
-<div>
-  <h1>Login</h1>
-  <div ng-show="error"></div>
-  <form class="" ng-submit="login()">
-    <div>
-      <label>Username</label>
-      <input type="text" class="" name="username" ng-model="loginForm.username" required>
-    </div>
-    <div>
-      <label>Password</label>
-      <input type="password" class="" name="password" ng-model="loginForm.password">
-    </div>
-    <div>
-      <button type="submit" class="">Login</button>
-    </div>
-  </form>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--4-col mdl-cell--4-offset mdl-cell--2-offset-tablet">
+    <h3>Login</h1>
+    <div ng-show="error"></div>
+    <form class="" ng-submit="login()">
+      <div class="mdl-textfield mdl-js-textfield">
+        <input type="text" class="mdl-textfield__input" name="username" id="username" ng-model="loginForm.username" required>
+        <label class="mdl-textfield__label" for="username">Username</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield">
+        <input type="password" class="mdl-textfield__input" name="password" id="password" ng-model="loginForm.password">
+        <label class="mdl-textfield__label" for="password">Password</label>
+      </div>
+      <div>
+        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Login</button>
+      </div>
+    </form>
+  </div>
 </div> 

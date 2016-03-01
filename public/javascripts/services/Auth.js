@@ -1,4 +1,5 @@
-angular.module('app').factory('AuthService',
+angular.module('app')
+  .factory('AuthService',
     ['$q', '$timeout', '$http',
     function ($q, $timeout, $http) {
 
@@ -21,7 +22,17 @@ angular.module('app').factory('AuthService',
       }
 
       function getUserStatus() {
-        return user;
+        $http.get('/user/status')
+        .success(function (data) {
+          if(data.status){
+            user = true;
+          } else {
+            user = false;
+          }
+        })
+        .error(function (data) {
+          user = false;
+        });
       }
 
       function login(username, password) {
@@ -69,7 +80,7 @@ angular.module('app').factory('AuthService',
 
       }
 
-      function register() {
+      function register(username,password) {
 
         var deferred = $q.defer();
 

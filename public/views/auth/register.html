@@ -1,0 +1,19 @@
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--4-col mdl-cell--4-offset mdl-cell--2-offset-tablet">
+    <h3>Register</h3>
+    <div ng-show="error" class="">{{errorMessage}}</div>
+    <form class="" ng-submit="register()">
+      <div class="mdl-textfield mdl-js-textfield">
+        <input type="text" class="mdl-textfield__input" name="username" id="username" ng-model="registerForm.username" required>
+        <label class="mdl-textfield__label" for="username">Username</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield">
+        <input type="password" class="mdl-textfield__input" name="password" id="password" ng-model="registerForm.password" required>
+        <label class="mdl-textfield__label" for="password">Password</label>
+      </div>
+      <div>
+        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" ng-disabled="disabled">Register</button>
+      </div>
+    </form>
+  </div>
+</div>

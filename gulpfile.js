@@ -10,25 +10,26 @@ var paths = {
     'public/views/**/*.html'
   ],
   css: [
-    'public/libs/foundation/css/foundation.css',
-    'public/libs/foundation/css/normalize.css',
     'public/stylesheets/style.css'
   ],
   componentsJS: [
     'public/libs/angular/angular.js',
     'public/libs/angular-animate/angular-animate.js',
-    'public/libs/angular-ui-router/release/angular-ui-router.js',
-    'public/libs/fastclick/lib/fastclick.js',
-    'public/libs/foundation/js/foundation.js',
-    'public/libs/hammerjs/hammer.js',
-    'public/libs/jquery-placeholder/jquery.placeholder.js',
-    'public/libs/jquery.cookie/jquery.cookie.js',
-    'public/libs/jquery/dist/jquery.js',
-    'public/libs/modernizr/modernizr.js'
+    'public/libs/angular-route/angular-route.js',
+    'public/libs/angular-resource/angular-resource.js',
+    //'public/libs/angular-ui-router/release/angular-ui-router.js',
+    //'public/libs/fastclick/lib/fastclick.js',
+    //'public/libs/hammerjs/hammer.js',
+    //'public/libs/jquery-placeholder/jquery.placeholder.js',
+    //'public/libs/jquery.cookie/jquery.cookie.js',
+    //'public/libs/jquery/dist/jquery.js',
+    //'public/libs/modernizr/modernizr.js'
   ],
   appJS: [
     'public/javascripts/app.js',
-    'public/javascripts/**/*.js'
+    'public/javascripts/routes/*.js',
+    'public/javascripts/services/*.js',
+    'public/javascripts/controllers/*.js'
   ]
 }
 
@@ -78,5 +79,6 @@ gulp.task('default', ['build'], function() {
   gulp.watch([paths.views], ['copy:views']);
   gulp.watch([paths.componentsJS], ['copy:components']);
   gulp.watch([paths.appJS], ['copy:app']);
+  gulp.watch([paths.css], ['copy:css']);
 });
 

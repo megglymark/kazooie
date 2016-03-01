@@ -1,4 +1,5 @@
-angular.module('app', []).controller('MainCtrl', function($scope) {
+angular.module('app')
+  .controller('MainController', function($scope) {
 
   $scope.tagline = 'Main!';
 
