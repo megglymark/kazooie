@@ -6,21 +6,31 @@ app
     
     .when('/', {
       templateUrl: 'views/home.html',
-      controller: 'MainController'
+      controller: 'MapController as vm',
+      access: {basic: true}
     })
 
     .when('/login', {
       templateUrl: 'views/auth/login.html',
-      controller: 'LoginController'
+      controller: 'LoginController',
+      access: {basic: false}
     })
 
     .when('/logout', {
-      controller: 'LogoutController'
+      controller: 'LogoutController',
+      access: {basic: true},
+      resolve: {
+        logout: function(AuthService) {
+          return AuthService.logout();
+        }
+      },
+      redirectTo: '/login'
     })
 
     .when('/register', {
       templateUrl: 'views/auth/register.html',
-      controller: 'RegisterController'
+      controller: 'RegisterController',
+      access: {basic: false}
     })
 
     .otherwise({redirectTo: '/'});
@@ -29,10 +39,18 @@ app
 app.run(function ($rootScope, $location, $route, AuthService) {
   $rootScope.$on('$routeChangeStart',
   function (event, next, current) {
-    getUserStatus();
-    if (next.access.restricted && AuthService.isLoggedIn()) {
-      $location.path('/login');
-      $route.reload();
-    }
+    AuthService.getUserStatus();
+   // .then(function(data){
+   //   console.log(next);
+   //   console.log(data);
+   //   if (next.access.basic && !data.status) {
+   //     console.log("reroute - not logged in ");
+   //     $location.path('/login');
+   //     $route.reload();
+   //   }
+   // })
+   // .catch(function(data) {
+   //   console.log(data);
+   // });
   });
 });

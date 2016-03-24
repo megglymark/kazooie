@@ -22,17 +22,20 @@ angular.module('app')
       }
 
       function getUserStatus() {
+
+        var deferred = $q.defer();
+
         $http.get('/user/status')
         .success(function (data) {
-          if(data.status){
-            user = true;
-          } else {
-            user = false;
-          }
+          user = true;
+          deferred.resolve(data);
         })
         .error(function (data) {
           user = false;
+          deferred.reject(data);
         });
+        
+        return deferred.promise;
       }
 
       function login(username, password) {
@@ -68,12 +71,12 @@ angular.module('app')
 
           .success(function (data) {
             user = false;
-            deferred.resolve();
+            deferred.resolve(false);
           })
 
           .error(function (data) {
             user = false;
-            deferred.reject();
+            deferred.reject(false);
           })
 
         return deferred.promise;

@@ -17,6 +17,7 @@ var paths = {
     'public/libs/angular-animate/angular-animate.js',
     'public/libs/angular-route/angular-route.js',
     'public/libs/angular-resource/angular-resource.js',
+    'public/libs/ngmap/build/scripts/ng-map.js'
     //'public/libs/angular-ui-router/release/angular-ui-router.js',
     //'public/libs/fastclick/lib/fastclick.js',
     //'public/libs/hammerjs/hammer.js',
@@ -45,6 +46,7 @@ gulp.task('copy:views', function() {
     base: './public'
   })
     .pipe(gulp.dest('./build'))
+    .pipe($.livereload())
   ;
 });
 
@@ -53,6 +55,7 @@ gulp.task('copy:components', function() {
     .pipe($.concat('components.js'))
     //.pipe($.uglify)
     .pipe(gulp.dest('./build/javascripts/'))
+    .pipe($.livereload())
   ;
 });
 
@@ -60,6 +63,7 @@ gulp.task('copy:app', function() {
   return gulp.src(paths.appJS)
     .pipe($.concat('app.js'))
     .pipe(gulp.dest('./build/javascripts/'))
+    .pipe($.livereload())
   ;
 });
 
@@ -67,6 +71,7 @@ gulp.task('copy:css', function() {
   return gulp.src(paths.css)
     .pipe($.concat('app.css'))
     .pipe(gulp.dest('./build/stylesheets/'))
+    .pipe($.livereload())
   ;
 });
 
@@ -76,6 +81,7 @@ gulp.task('build', function() {
 });
 
 gulp.task('default', ['build'], function() {
+  $.livereload.listen();
   gulp.watch([paths.views], ['copy:views']);
   gulp.watch([paths.componentsJS], ['copy:components']);
   gulp.watch([paths.appJS], ['copy:app']);

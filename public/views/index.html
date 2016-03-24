@@ -9,8 +9,8 @@
   </head>
 
   <!-- Always shows a header, even in smaller screens. -->
-  <div class="mdl-layout mdl-js-layout">
-    <header class="mdl-layout__header mdl-layout__header--scroll">
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--no-desktop-drawer-button">
+    <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <!-- Title -->
         <span class="mdl-layout-title">App</span>
@@ -18,16 +18,20 @@
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation. We hide it in small screens. -->
         <nav class="mdl-navigation mdl-layout--large-screen-only">
-          <a class="mdl-navigation__link" href="">Login</a>
-          <a class="mdl-navigation__link" href="">Register</a>
+          <a class="mdl-navigation__link" href="#/">Home</a>
+          <a class="mdl-navigation__link" href="#/login">Login</a>
+          <a class="mdl-navigation__link" href="#/register">Register</a>
+          <a class="mdl-navigation__link" href="#/logout">Logout</a>
         </nav>
       </div>
     </header>
-    <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+    <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">App</span>
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="">Login</a>
-        <a class="mdl-navigation__link" href="">Register</a>
+        <a class="mdl-navigation__link" href="#/">Home</a>
+        <a class="mdl-navigation__link" href="#/login">Login</a>
+        <a class="mdl-navigation__link" href="#/register">Register</a>
+        <a class="mdl-navigation__link" href="#/logout">Logout</a>
       </nav>
     </div>
     <main class="mdl-layout__content">
@@ -37,6 +41,7 @@
 
   <!-- scripts -->
   <script src="../javascripts/components.js"></script>
+  <script src="https://maps.google.com/maps/api/js?libraries=placeses,visualization,drawing,geometry,places"></script>
   <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
   <script src="../javascripts/app.js"></script>
 </html>

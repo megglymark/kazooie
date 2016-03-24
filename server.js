@@ -9,6 +9,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var users = require('./app/routes/users');
+var polygons = require('./app/routes/polygons');
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use(express.static(path.join(__dirname, '/build')));
 //app.use(express.static(__dirname + '/public'));
 
 app.use('/user', users);
+app.use('/api/', polygons);
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build/views', 'index.html'));

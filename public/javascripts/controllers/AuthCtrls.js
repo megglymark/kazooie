@@ -3,8 +3,6 @@ angular.module('app')
   ['$scope', '$location', 'AuthService',
     function ($scope, $location, AuthService) {
     
-      console.log(AuthService.getUserStatus());
-
       $scope.login = function () {
 
         $scope.error = false;
@@ -34,15 +32,21 @@ angular.module('app')
     ['$scope', '$location', 'AuthService',
     function ($scope, $location, AuthService) {
 
-      $scope.logout = function () {
+      logout = function () {
 
         AuthService.logout()
 
           .then(function () {
             $location.path('/login');
+          })
+          .catch(function () {
+            console.log("Couldn't logout");
           });
 
       };
+
+      //fire logout on controller load
+      logout();
 
 }]);
 
