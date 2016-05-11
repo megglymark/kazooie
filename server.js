@@ -9,7 +9,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var users = require('./app/routes/users');
-var polygons = require('./app/routes/polygons');
+var blocks = require('./app/routes/blocks');
 
 var app = express();
 
@@ -17,8 +17,7 @@ var app = express();
 // view engine setup
 //app.set('views', path.join(__dirname, 'build/views'));
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'build/', 'views', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -34,7 +33,7 @@ app.use(express.static(path.join(__dirname, '/build')));
 //app.use(express.static(__dirname + '/public'));
 
 app.use('/user', users);
-app.use('/api/', polygons);
+app.use('/api/', blocks);
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build/views', 'index.html'));

@@ -6,24 +6,27 @@ angular.module('app')
       return ({
         getPolygons: getPolygons,
         postPolygons: postPolygons
-      })
+      });
 
       function getPolygons() {
-        $http.get('/api/polygons')
+        var promise = $http.get('/api/blocks')
         .success(function(data) {
-          console.log(data);
           return data;
         })
         .error(function(data) {
           console.log('Error: ' + data);
         });
+        return promise;
       }
 
       function postPolygons(latlng) {
-        $http.post('/api/polygons', latlng)
+        var data = {};
+        data.paths = latlng;
+        data.user = AuthService.isLoggedIn();
+        $http.post('/api/blocks', data)
         .success(function(data) {
         })
         .error(function(data) {
         });
-      };
+      }
 }]);

@@ -7,7 +7,13 @@ app
     .when('/', {
       templateUrl: 'views/home.html',
       controller: 'MapController as vm',
-      access: {basic: true}
+      access: {basic: false}
+    })
+    
+    .when('/redraw', { 
+      templateUrl: 'views/redraw.html',
+      controller: 'MapController as vm',
+      access: {baic: false},
     })
 
     .when('/login', {
@@ -39,18 +45,11 @@ app
 app.run(function ($rootScope, $location, $route, AuthService) {
   $rootScope.$on('$routeChangeStart',
   function (event, next, current) {
-    AuthService.getUserStatus();
-   // .then(function(data){
-   //   console.log(next);
-   //   console.log(data);
-   //   if (next.access.basic && !data.status) {
-   //     console.log("reroute - not logged in ");
-   //     $location.path('/login');
-   //     $route.reload();
-   //   }
-   // })
-   // .catch(function(data) {
-   //   console.log(data);
-   // });
+    console.log(AuthService.isLoggedIn());
+    if (next.access.basic && !AuthService.isLoggedIn()) {
+      console.log("reroute - not logged in ");
+      $location.path('/login');
+      $route.reload();
+    }
   });
 });

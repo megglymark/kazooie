@@ -15,7 +15,7 @@ angular.module('app')
 
       function isLoggedIn() {
         if(user) {
-          return true;
+          return user;
         } else {
           return false;
         }
@@ -27,11 +27,10 @@ angular.module('app')
 
         $http.get('/user/status')
         .success(function (data) {
-          user = true;
           deferred.resolve(data);
         })
         .error(function (data) {
-          user = false;
+          user = null;
           deferred.reject(data);
         });
         
@@ -46,16 +45,16 @@ angular.module('app')
 
           .success(function (data, status) {
             if(status === 200 && data.status) {
-              user = true;
+              user = data.user;
               deferred.resolve();
             } else {
-              user = false;
+              user = null;
               deferred.reject();
             }
           })
 
           .error(function (data) {
-            user = false;
+            user = null;
             deferred.reject();
           });
 
@@ -83,11 +82,13 @@ angular.module('app')
 
       }
 
-      function register(username,password) {
+      function register(user) {
 
         var deferred = $q.defer();
 
-        $http.post('/user/register', {username: username, password: password })
+        $http.post('/user/register', {username: user.username, 
+                                      password: user.password,
+                                      company: user.company})
 
           .success(function (data, status) {
             if(status === 200 && data.status){

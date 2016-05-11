@@ -59,9 +59,9 @@ angular.module('app')
 
           $scope.error = false;
           $scope.disabled = true;
-          console.log($scope.registerForm.username);
+          console.log($scope.registerForm);
 
-          AuthService.register($scope.registerForm.username, $scope.registerForm.password)
+          AuthService.register($scope.registerForm)
             .then(function () {
               $location.path('/login');
               $scope.disabled = false;

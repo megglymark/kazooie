@@ -1,12 +1,20 @@
-<div map-lazy-load="https://maps.google.com/maps/api/js"
-       map-lazy-load-params="">
-  <ng-map center="[39.7400,-121.8356]" >
-    <drawing-manager
-      on-overlaycomplete="vm.onOverlayComplete()"
-      drawing-control-options="{position:'TOP_RIGHT',
-                                drawingModes:['polygon','circle']}"
-      drawingControl="true"
-      drawingMode="null" >
-    </drawing-manager>
-  </ng-map>
-</div>
+  <div class="">
+    <div map-lazy-load="https://maps.google.com/maps/api/js"
+           map-lazy-load-params="">
+      <ng-map center="[39.7400,-121.8356]" >
+        <drawing-manager
+          on-overlaycomplete="vm.onOverlayComplete()"
+          drawing-control-options="{position:'TOP_RIGHT',
+                                    drawingModes:['polygon']}"
+          drawingControl="true"
+          drawingMode="null" >
+        </drawing-manager>
+        <shape ng-repeat="shape in vm.polygons"
+           name="polygon"
+           stroke-color="#FF0000"
+           stroke-opacity="0.8"
+           paths="{{shape.paths}}"
+           stroke-weight="2"></shape>
+      </ng-map>
+    </div>
+  </div>

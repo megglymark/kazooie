@@ -7,7 +7,8 @@ console.log(JSON.stringify($));
 
 var paths = {
   views: [
-    'public/views/**/*.html'
+    'public/views/**/*.html',
+    'public/views/favicon.ico'
   ],
   css: [
     'public/stylesheets/style.css'
