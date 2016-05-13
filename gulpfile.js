@@ -10,6 +10,9 @@ var paths = {
     'public/views/**/*.html',
     'public/views/favicon.ico'
   ],
+  images: [
+    'public/images/*.*'
+  ],
   css: [
     'public/stylesheets/style.css'
   ],
@@ -18,7 +21,14 @@ var paths = {
     'public/libs/angular-animate/angular-animate.js',
     'public/libs/angular-route/angular-route.js',
     'public/libs/angular-resource/angular-resource.js',
+    'public/libs/angular-aria/angular-aria.js',
+    'public/libs/angular-material/angular-material.js',
+    'public/libs/angular-qr-scanner/qr-scanner.js',
+    'public/libs/angular-qr-scanner/jsqrcode-combined.min.js',
+    'public/libs/angular-qrcode/angular-qrcode.js',
+    //'public/libs/angular-qrcode/qrcode.js',
     'public/libs/ngmap/build/scripts/ng-map.js'
+
     //'public/libs/angular-ui-router/release/angular-ui-router.js',
     //'public/libs/fastclick/lib/fastclick.js',
     //'public/libs/hammerjs/hammer.js',
@@ -33,15 +43,24 @@ var paths = {
     'public/javascripts/services/*.js',
     'public/javascripts/controllers/*.js'
   ]
-}
+};
 
 //  clean
 gulp.task('clean', function(cb) {
   rimraf('./build', cb);
 });
 
-gulp.task('copy', ['copy:views', 'copy:components', 'copy:app', 'copy:css']);
+gulp.task('copy', ['copy:images', 'copy:views', 'copy:components', 'copy:app', 'copy:css']);
 
+
+gulp.task('copy:images', function() {
+  return gulp.src(paths.images, {
+    base: './public'
+  })
+    .pipe(gulp.dest('./build'))
+    .pipe($.livereload())
+  ;
+});
 gulp.task('copy:views', function() {
   return gulp.src(paths.views, {
     base: './public'

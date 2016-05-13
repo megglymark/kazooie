@@ -2,47 +2,46 @@
 <html ng-app="app">
   <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
   <!-- css -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-pink.min.css">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
   <link rel="stylesheet" href="../stylesheets/app.css">
   </head>
 
-  <!-- Always shows a header, even in smaller screens. -->
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--no-desktop-drawer-button">
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <!-- Title -->
-        <span class="mdl-layout-title">App</span>
-        <!-- Add spacer, to align navigation to the right -->
-        <div class="mdl-layout-spacer"></div>
-        <!-- Navigation. We hide it in small screens. -->
-        <nav class="mdl-navigation mdl-layout--large-screen-only">
-          <a class="mdl-navigation__link" href="#/">Home</a>
-          <a class="mdl-navigation__link" href="#/login">Login</a>
-          <a class="mdl-navigation__link" href="#/register">Register</a>
-          <a class="mdl-navigation__link" href="#/logout">Logout</a>
-        </nav>
-      </div>
-    </header>
-    <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title">App</span>
-      <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="#/">Home</a>
-        <a class="mdl-navigation__link" href="#/login">Login</a>
-        <a class="mdl-navigation__link" href="#/register">Register</a>
-        <a class="mdl-navigation__link" href="#/logout">Logout</a>
-      </nav>
-    </div>
-    <main class="mdl-layout__content">
-      <div class="page-content" ng-view></div>
-    </main>
-  </div>    
+  <body layout="row" ng-cloak>
+    <md-sidenav class="md-sidenav-left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="2" md-component-id="left">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <span>Kazooie</span>
+        </div>
+      </md-toolbar>
+      <md-button href="#/" aria-label="Map">
+        Map
+      </md-button>
+      <md-button href="#/scanner" aria-label="Scanner">
+        Scanner
+      </md-button>
+      <md-button href="#/qrcodes" aria-label="Scanner">
+        QRcodes
+      </md-button>
+      <md-button href="#/login" aria-label="Login">
+        Login
+      </md-button>
+      <md-button href="#/register" aria-label="Register">
+        Register
+      </md-button>
+      <md-button href="#/logout" aria-label="Logout">
+        Logout
+      </md-button>
+    </md-sidenav>
+    <md-content ng-view flex></md-content>
+  </body>
+
 
   <!-- scripts -->
   <script src="../javascripts/components.js"></script>
   <script src="https://maps.google.com/maps/api/js?libraries=placeses,visualization,drawing,geometry,places"></script>
-  <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
   <script src="../javascripts/app.js"></script>
 </html>
 

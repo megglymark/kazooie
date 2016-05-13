@@ -26,7 +26,9 @@ router.get('/blocks/:id',function(req,res) {
 router.post('/blocks', function(req,res) {
   Block.create({ 
     company: req.body.user.company,
+    name: "",
     polygon: {
+      center: req.body.center,
       paths: req.body.paths,
       strokeColor: '#FF0000',
       strokeOpacity: 0.8,

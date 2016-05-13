@@ -1,15 +1,14 @@
 angular.module('app')
-  .factory('ShapeService',
+  .factory('BoxService',
     ['$q', '$http', 'AuthService',
     function ($q, $http, AuthService) {
-
       return ({
-        getPolygons: getPolygons,
-        postPolygons: postPolygons
+        getBoxes: getBoxes,
+        postBox: postBox
       });
 
-      function getPolygons() {
-        var promise = $http.get('/api/blocks')
+      function getBoxes() {
+        var promise = $http.get('/api/boxes')
         .success(function(data) {
           return data;
         })
@@ -19,14 +18,18 @@ angular.module('app')
         return promise;
       }
 
-      function postPolygons(latlng) {
+      function postBox(box) {
         var data = {};
-        data.paths = latlng;
+        data.box = box;
         data.user = AuthService.isLoggedIn();
-        $http.post('/api/blocks', data)
+        var promise = $http.post('/api/boxes', data)
         .success(function(data) {
+          return data;
         })
-        .error(function(data) {
+        .error(function(err) {
+          console.log('postBoxes: ' + err);
         });
+        return promise;
       }
-}]);
+        
+  }]);

@@ -5,14 +5,14 @@ app
   $routeProvider
     
     .when('/', {
-      templateUrl: 'views/home.html',
-      controller: 'MapController as vm',
+      templateUrl: 'views/map.html',
+      controller: 'BlockController as vm',
       access: {basic: false}
     })
     
     .when('/redraw', { 
       templateUrl: 'views/redraw.html',
-      controller: 'MapController as vm',
+      controller: 'BlockController as vm',
       access: {baic: false},
     })
 
@@ -39,13 +39,45 @@ app
       access: {basic: false}
     })
 
+    .when('/block', {
+      templateUrl: 'views/block.html',
+      controller: 'BlockController as vm',
+      access: {basic: false}
+    })
+    .when('/scanner', {
+      templateUrl: 'views/scanner.html',
+      controller: 'ScannerController',
+      access: {basic: false}
+    })
+    .when('/box', {
+      templateUrl: 'views/box.html',
+      controller: 'BoxController',
+      access: {basic: false}
+    })
+    .when('/qrcodes', {
+      templateUrl: 'views/qrcodes.html',
+      controller: 'QRcodeController as qr',
+      access: {basic: false}
+    })
+    .when('/scanHarvest', {
+      templateUrl: 'views/scan-harvest.html',
+      controller: 'ScannerController',
+      access: {basic: false}
+    })
+    .when('/scanStorage', {
+      templateUrl: 'views/scan-storage.html',
+      controller: 'ScannerController',
+      access: {basic: false}
+    })
+
+
     .otherwise({redirectTo: '/'});
 }]);
 
 app.run(function ($rootScope, $location, $route, AuthService) {
   $rootScope.$on('$routeChangeStart',
   function (event, next, current) {
-    console.log(AuthService.isLoggedIn());
+    //console.log(AuthService.isLoggedIn());
     if (next.access.basic && !AuthService.isLoggedIn()) {
       console.log("reroute - not logged in ");
       $location.path('/login');

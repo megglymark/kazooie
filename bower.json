@@ -21,6 +21,8 @@
     "angular-route": "^1.5.0",
     "angular-resource": "^1.5.0",
     "material-design-lite": "^1.1.1",
-    "ngmap": "^1.16.7"
+    "ngmap": "^1.16.7",
+    "angular-material": "master",
+    "angular-qrcode": "monospaced/angular-qrcode#^6.2.1"
   }
 }

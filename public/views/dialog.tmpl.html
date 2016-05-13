@@ -1,0 +1,22 @@
+<md-dialog aria-label="List dialog" ng-init="{{box.block=block._id}}">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h3>Box Info</h3>
+    </div>
+  </md-toolbar>
+  <md-dialog-content layout="row">
+    <md-input-container flex="100">
+      <label>Produce</label>
+      <input ng-model="box.produce">
+    </md-input-container>
+
+    <md-input-container flex="100">
+      <label>Amount</label>
+      <input ng-model="box.amount">
+    </md-input-container>
+  </md-dialog-content>
+
+  <md-dialog-actions layout="row" layout-align="end">
+    <md-button ng-click="submit(box)" type="submit" class="md-primary">Submit</md-button>
+  </md-dialog-actions>
+</md-dialog>

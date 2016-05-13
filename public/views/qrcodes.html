@@ -1,0 +1,13 @@
+<div layout="column">
+  <md-toolbar class="toolbar-section">
+    <div class="md-toolbar-tools">
+      <span>QRcodes</span>
+    </div>
+  </md-toolbar>
+  <md-content layout-padding layout-wrap layout="row">
+    <div ng-repeat="qr in qr.qrcodes" flex="50" flex-xs="100">
+      <qrcode version="5" error-correction-level="M" 
+              size="274" 
+              data="{{qr.company+qr._id}}"></qrcode>
+    </div>
+  </md-content>

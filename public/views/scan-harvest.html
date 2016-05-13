@@ -1,0 +1,17 @@
+<div layout="column">
+  </div>
+  <md-toolbar class="toolbar-section">
+    <div class="md-toolbar-tools">
+      <span>Scanner</span>
+      <span flex></span>
+      <md-button class="md-accent" ng-click="getBlock();showBoxDialog($event);">
+        Box
+      </md-button>
+    </div>
+   </md-toolbar>
+   <md-content>
+     <md-button ng-mousedown="mouseDown();" ng-mouseup="mouseUp();"class="md-fab md-fab-bottom-right md-accent" aria-label="Ready Camera">
+       <md-icon md-svg-src="images/ic_camera_white_24px.svg"></md-icon>
+     </md-button>
+     <qr-scanner fill-layout width="100%" height="100%" ng-success="onSuccess(data)" ng-error="onError(error)" ng-video-source="'4a6bb569ab7dba397381c64ae1571a3bb568f8ad2bc506411d29d9ae3b42e642'"></qr-scanner>
+   </md-content>

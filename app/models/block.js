@@ -9,6 +9,9 @@ var Block = new Schema({
   polygon: { 
     _id: { type: mongoose.Schema.Types.ObjectId,
            auto: true },
+    _blockId: { type: mongoose.Schema.Types.ObjectId,
+                ref: 'Block' },
+    center: mongoose.Schema.Types.Mixed,
     paths: [],
     strokeColor: String,
     strokeOpacity: Number,
@@ -20,5 +23,11 @@ var Block = new Schema({
              ref: 'Company' }
 });
 
+// Assign polygon the block.id
+Block.pre('save', function(next) {
+  this.polygon._blockId = this._id;
+  this.name = this.id.substr(this.id.length - 5);
+  next();
+});
 
 module.exports = mongoose.model('Block', Block);

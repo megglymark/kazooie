@@ -1,0 +1,49 @@
+<div layout="column">
+  <md-toolbar class="toolbar-section">
+      <div class="md-toolbar-tools">
+        <span>Map</span>
+        <span flex></span>
+        <md-button ng-show="vm.selectedBlock != null" ng-click="clickedHarvest()">
+          Harvest
+        </md-button>
+      </div>
+  </md-toolbar>
+  <md-content>
+    <div flex="100" hide show-gt-xs>
+      <div map-lazy-load="https://maps.google.com/maps/api/js"
+             map-lazy-load-params="">
+        <ng-map center={{vm.center}} >
+          <drawing-manager
+            on-overlaycomplete="vm.onOverlayComplete()"
+            drawing-control-options="{position:'TOP_RIGHT',
+                                      drawingModes:['polygon']}"
+            drawingControl="true"
+            drawingMode="null" >
+          </drawing-manager>
+          <shape ng-repeat="polygon in vm.polygons"
+             name="polygon"
+             stroke-color="#FF0000"
+             stroke-opacity="0.8"
+             paths="{{polygon.paths}}"
+             stroke-weight="2"
+             on-click="vm.showBlock(polygon)"></shape>
+        </ng-map>
+      </div>
+    </div>
+    <div>
+      <md-list flex="100" layout="row" layout-xs="column"layout-wrap>
+        <md-list-item flex="50" flex-xs="100" ng-repeat="block in vm.blocks">
+            <md-card flex="100" ng-click="clickedBlock(block,$index)"
+                     ng-class="{true: 'md-primary md-hue-1', false:''}[block.selected]">
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">{{block.name}}</span>
+                </md-card-title-text>
+              </md-card-titel>
+              <md-card-content>
+              </md-card-content>
+            </md-card>
+        </md-list-item>
+      </md-list>
+    </div>
+</div>

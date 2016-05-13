@@ -8,8 +8,12 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
+
+
 var users = require('./app/routes/users');
 var blocks = require('./app/routes/blocks');
+var boxes = require('./app/routes/boxes');
+var qrcodes = require('./app/routes/qrcodes');
 
 var app = express();
 
@@ -34,6 +38,8 @@ app.use(express.static(path.join(__dirname, '/build')));
 
 app.use('/user', users);
 app.use('/api/', blocks);
+app.use('/api/', boxes);
+app.use('/api/', qrcodes);
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build/views', 'index.html'));
